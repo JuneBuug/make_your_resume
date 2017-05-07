@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Person
 from .models import Skill
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 def resume_list(request):
@@ -17,13 +19,11 @@ def resume_write(request):
         person.save()
         skill = Skill.objects.create(devstack=skill,person= person)
         skill.save()
-        # return redirect('/')
-        return redirect('/resume/'+str(person.id))
+        # return HttpResponseRedirect(reverse()'/resume/'+str(person.id))
+        return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
          return render(request,'resume_prac/resume_write.html')
 
 def resume_detail(request,resume_id):
     person = Person.objects.get(id=resume_id)
-    skill = Skill.objects.get(person=person)
-
-    return render(request,'resume_prac/resume_detail.html',{'person':person, 'skill':skill})
+    return render(request,'resume_prac/resume_detail.html',{'person':person})

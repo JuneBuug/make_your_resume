@@ -7,12 +7,14 @@ import json
 class Person(models.Model) :
 	person_name = models.CharField(max_length=80)
 	position = models.CharField(max_length=200)
+	profile_image = models.ImageField(upload_to='%Y/%m/%d/orig',default='default.jpg')
 
 	def __str__(self):
-		return "%s (%s)" % (person_name,position)
+		return self.person_name
 
 class Skill(models.Model) :
 	devstack = models.CharField(max_length=80)
+	degree = models.IntegerField(default=0)
 	person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
 	def __str__(self):
