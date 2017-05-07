@@ -18,4 +18,4 @@
 ## 2017.05.07 스크린샷
 - - - -
 
-![screenshot](.README/screentshot.png)
+![screenshot](README/screentshot.png)
