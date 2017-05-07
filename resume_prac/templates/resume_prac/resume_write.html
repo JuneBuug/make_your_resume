@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Resume 쓰기</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+</head>
+<body>
+<div class="content container">
+    <header class="page-header">
+        <h1>Resume 쓰기</h1>
+    </header>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" class="form_layout">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="이름">
+                </div>
+                <div class="form-group">
+                    <label for="position">직군</label>
+                    <input type="text" name="position" class="form-control" id="position" placeholder="직군">
+                </div>
+                <div class="form-group">
+                    <label for="skill">기술 스택</label>
+                    <input type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요.">
+                </div>
+                <div class="form-group">
+                    <label for="skill">추가 기술 스택</label>
+                    <input type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요.">
+                </div>
+
+                <!-- <button id="add_skill" class ="btn btn-primary" onsubmit="return false">+</button> -->
+                <button type="submit" class="btn btn-default">제출</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

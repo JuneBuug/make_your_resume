@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>{{person.person_name}}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+<div class="content container">
+    <header class="page-header">
+        <h1>{{person.person_name}}의 Resume </h1>
+    </header>
+    <div class="row">
+        <div class="col-md-16">
+            <div id="resume_top_layout">
+              <h1>{{person.position}}</h1>
+
+              <%%>
+              <h4>{{ skill.devstack }}</h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>
