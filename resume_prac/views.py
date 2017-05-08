@@ -15,9 +15,10 @@ def resume_write(request):
         name = request.POST['name']
         position = request.POST['position']
         skill = request.POST['skill']
+        degree = request.POST['skill_degree']
         person = Person.objects.create(person_name=name,position=position)
         person.save()
-        skill = Skill.objects.create(devstack=skill,person= person)
+        skill = Skill.objects.create(devstack=skill,person= person,degree=degree)
         skill.save()
         # return HttpResponseRedirect(reverse()'/resume/'+str(person.id))
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
