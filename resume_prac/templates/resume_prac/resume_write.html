@@ -17,7 +17,7 @@
     </header>
     <div class="row">
         <div class="col-md-12">
-            <form method="POST" class="form_layout">
+            <form method="POST" enctype="multipart/form-data" class="form_layout" >
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름</label>
@@ -26,6 +26,10 @@
                 <div class="form-group">
                     <label for="position">직군</label>
                     <input type="text" name="position" class="form-control" id="position" placeholder="직군">
+                </div>
+                <div class="form-group">
+                    <label for="profile_image">사진 업로드</label>
+                     <input id="profile_image" type="file" class="form-control" name="profile_image">
                 </div>
                 <div class="form-group">
                     <label for="skill">기술 스택</label>
