@@ -14,6 +14,7 @@ def resume_write(request):
     if request.method == 'POST':
         name = request.POST['name']
         position = request.POST['position']
+        # image = request.POST['profile_image']
         skill = request.POST['skill']
         degree = request.POST['skill_degree']
         person = Person.objects.create(person_name=name,position=position)
