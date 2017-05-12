@@ -7,8 +7,30 @@
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script src="jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
 
+  <script>
+  window.onload = function(){
+    var app  = new Vue({
+    el: "#app",
+    data: {
+      rows: [
+        {name: "James Bond",job: "spy"},
+        {name: "Goldfinger", job: "villain"}
+      ]
+    },
+    methods:{
+      addRow: function(){
+        this.rows.push({name:"",job:""});
+      },
+      removeRow: function(row){
+        this.rows.$remove(row);
+      },
+    }
+  });
+  }
+
+    </script>
 </head>
 
 <body style="padding:10%">
@@ -36,7 +58,7 @@
     </header>
     <div class="row">
         <div class="col-md-12">
-            <form method="POST" enctype="multipart/form-data" class="form_layout" >
+            <!-- <form method="POST" enctype="multipart/form-data" class="form_layout" > -->
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름</label>
@@ -59,16 +81,39 @@
                 <label for="skill_degree" class="col-form-label">기술 능숙도(1~100)</label>
                 <input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree">
               </div>
-                <!-- <div class="form-group">
-                    <label for="skill">추가 기술 스택</label>
-                    <input type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요.">
-                </div> -->
 
 
-                <button type="submit" class="btn btn-default">제출</button>
-            </form>
+                <!-- <button type="submit" class="btn btn-default">제출</button> -->
+            <!-- </form> -->
+
+
+
+
         </div>
     </div>
 </div>
+
+<div id="app">
+<table class="table">
+  <thead>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Job</strong></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="row in rows">
+      <td><input type="text" v-model="row.name"></td>
+      <td><input type="text" v-model="row.job"></td>
+      <td><a @click="removeRow(row)">Remove</a></td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <button class="button btn-primary" @click="addRow">Add row</button>
+</div>
+</div>
+
 </body>
 </html>
