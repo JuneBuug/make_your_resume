@@ -15,13 +15,12 @@
     el: "#app",
     data: {
       rows: [
-        {name: "James Bond",job: "spy"},
-        {name: "Goldfinger", job: "villain"}
+        {skill: "Android",degree: 30},
       ]
     },
     methods:{
       addRow: function(){
-        this.rows.push({name:"",job:""});
+        this.rows.push({skill:"",degree: 0});
       },
       removeRow: function(row){
         this.rows.$remove(row);
@@ -72,7 +71,7 @@
                     <label for="profile_image">사진 업로드</label>
                      <input id="profile_image" type="file" class="form-control" name="profile_image">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="skill">기술 스택</label>
                     <input type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요.">
                 </div>
@@ -80,10 +79,31 @@
                 <div class="form-group">
                 <label for="skill_degree" class="col-form-label">기술 능숙도(1~100)</label>
                 <input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree">
+              </div> -->
+
+              <div id="app">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td><strong>기술 스택</strong></td>
+                    <td><strong>기술 능숙도</strong></td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in rows">
+                    <td><input type="text" v-model="row.skill"  name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요."></td>
+                    <td><input v-model="row.degree" input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree"/></td>
+                    <td><button class="button btn-primary" @click="removeRow">Remove</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
+                <button class="button btn-primary" @click="addRow">Add row</button>
+              </div>
               </div>
 
-
-                <!-- <button type="submit" class="btn btn-default">제출</button> -->
+              <button type="submit" class="btn btn-default">제출</button>
             <!-- </form> -->
 
 
@@ -93,27 +113,6 @@
     </div>
 </div>
 
-<div id="app">
-<table class="table">
-  <thead>
-    <tr>
-      <td><strong>Name</strong></td>
-      <td><strong>Job</strong></td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="row in rows">
-      <td><input type="text" v-model="row.name"></td>
-      <td><input type="text" v-model="row.job"></td>
-      <td><a @click="removeRow(row)">Remove</a></td>
-    </tr>
-  </tbody>
-</table>
-<div>
-  <button class="button btn-primary" @click="addRow">Add row</button>
-</div>
-</div>
 
 </body>
 </html>
