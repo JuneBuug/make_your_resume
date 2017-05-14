@@ -19,7 +19,8 @@
       ]
     },
     methods:{
-      addRow: function(){
+      addRow: function(event){
+        if(event) event.preventDefault()
         this.rows.push({skill:"",degree: 0});
       },
       removeRow: function(row){
@@ -57,7 +58,7 @@
     </header>
     <div class="row">
         <div class="col-md-12">
-            <!-- <form method="POST" enctype="multipart/form-data" class="form_layout" > -->
+            <form method="POST" enctype="multipart/form-data" class="form_layout"  >
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름</label>
@@ -71,15 +72,6 @@
                     <label for="profile_image">사진 업로드</label>
                      <input id="profile_image" type="file" class="form-control" name="profile_image">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="skill">기술 스택</label>
-                    <input type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요.">
-                </div>
-
-                <div class="form-group">
-                <label for="skill_degree" class="col-form-label">기술 능숙도(1~100)</label>
-                <input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree">
-              </div> -->
 
               <div id="app">
               <table class="table">
@@ -92,22 +84,19 @@
                 </thead>
                 <tbody>
                   <tr v-for="row in rows">
-                    <td><input type="text" v-model="row.skill"  name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요."></td>
+                    <td><input v-model="row.skill" type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요."></td>
                     <td><input v-model="row.degree" input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree"/></td>
                     <td><button class="button btn-primary" @click="removeRow">Remove</button></td>
                   </tr>
                 </tbody>
               </table>
               <div>
-                <button class="button btn-primary" @click="addRow">Add row</button>
+                <button class="button btn-primary" @click="addRow" v-on:submit.prevent>Add row</button>
               </div>
               </div>
 
               <button type="submit" class="btn btn-default">제출</button>
-            <!-- </form> -->
-
-
-
+            </form>
 
         </div>
     </div>
