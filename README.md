@@ -33,5 +33,5 @@ python manage.py runserver
 ![screenshot](README/screentshot.png)
 
 ## 2017.05.14 스크린샷
-![screenshot2](README/screentshot2.png)
-![screenshot3](README/screentshot3.png)
+![screenshot2](README/screenshot2.png)
+![screenshot3](README/screenshot3.png)
