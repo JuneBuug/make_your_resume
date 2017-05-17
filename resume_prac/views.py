@@ -30,16 +30,14 @@ def resume_write(request):
         #         person.save()
         #     fp.close()
 
-        sk = request.POST['skill']
-        degree = request.POST['skill_degree']
-        # for s in sk:
-        #     d= degree[forloop.counter]
-        #     skill = Skill.objects.create(devstack=s,person= person,degree=d)
-        #     skill.save()
+        sk = dict(request.POST)['skill']
+        degree = dict(request.POST)['skill_degree']
+        number =0
+        for s in sk  :
+            skill = Skill.objects.create(devstack=s,person= person,degree=degree[number])
+            skill.save()
+            number+=1
 
-        skill = Skill.objects.create(devstack=sk,person= person,degree=degree)
-        skill.save()
-        # return HttpResponseRedirect(reverse()'/resume/'+str(person.id))
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
          return render(request,'resume_prac/resume_write.html')

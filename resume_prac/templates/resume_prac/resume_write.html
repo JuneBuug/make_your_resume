@@ -23,8 +23,9 @@
         if(event) event.preventDefault()
         this.rows.push({skill:"",degree: 0});
       },
-      removeRow: function(row){
-        this.rows.$remove(row);
+      remove: function(row,index){
+        if(event) event.preventDefault()
+        this.rows.splice(index,1)
       },
     }
   });
@@ -83,19 +84,19 @@
                   <tr>
                     <td><strong>기술 스택</strong></td>
                     <td><strong>기술 능숙도</strong></td>
-                    <td></td>
+                    <td><button class="btn btn-primary" @click="addRow" v-on:submit.prevent>추가하기</button></td>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="row in rows">
+                  <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
                     <td><input v-model="row.skill" type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요."></td>
                     <td><input v-model="row.degree" input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree"/></td>
-                    <td><button class="button btn-primary" @click="removeRow">Remove</button></td>
+                    <td><button class="btn btn-primary" @click="remove(row,index)" >Remove</button></td>
                   </tr>
                 </tbody>
               </table>
               <div>
-                <button class="button btn-primary" @click="addRow" v-on:submit.prevent>Add row</button>
+
               </div>
               </div>
 
