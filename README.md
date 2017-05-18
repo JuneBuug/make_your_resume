@@ -35,3 +35,10 @@ python manage.py runserver
 ## 2017.05.14 스크린샷
 ![screenshot2](README/screenshot2.png)
 ![screenshot3](README/screenshot3.png)
+
+## 2017.5.18 기준 해야할 것들 
+* 이미지 업로드 / 적용
+* resume 템플릿 
+* tag 만들기 
+* tag 별 검색 혹은 분류 
+* 타임라인! vue 로 구현해보기
