@@ -10,106 +10,11 @@
     <link rel="stylesheet" href="{% static "resume_prac/detail.sass" %}">
 
     <script src="https://unpkg.com/vue"></script>
-
-    <script>
-    window.onload = function () {
-      Vue.component('blog-articles', {
-        template: '#my-template',
-        props: ['datesArticles'],
-        data() {
-          return {
-            searchQuery: ''
-          }
-        },
-        computed: {
-          searchedArticles() {
-            var searchRegex = new RegExp(this.searchQuery, 'i');
-            var searchedObj = {};
-
-            if(this.searchQuery == '') {
-               return this.datesArticles;
-            }
-
-            for(var date in this.datesArticles) {
-              searchedObj[date] = this.datesArticles[date].filter((article) => {
-                return searchRegex.test(article.title) ||
-                       searchRegex.test(article.teaser) ||
-                       searchRegex.test(article.published_at) ||
-                       searchRegex.test(date);
-              });
-            }
-            return searchedObj;
-          }
-        },
-        methods: {
-          anyArticle() {
-            return this.countAllArticles() ? true : false;
-          },
-          countAllArticles() {
-            var count = 0;
-            for(var date in this.searchedArticles) {
-              count += this.searchedArticles[date].length;
-            }
-            return count;
-          }
-        }
-      });
-
-      new Vue({
-        el: '#app',
-        data: {
-          datesArticles: {
-            'September, 2016': [
-              {
-                title: '다섯번째',
-                slug: 'five',
-                teaser: 'five',
-                published_at: '30.09.2016.'
-              },
-              {
-                title: 'Four',
-                slug: 'four',
-                teaser: 'four',
-                published_at: '15.09.2016.'
-              }
-            ],
-            'April, 2016': [
-              {
-                title: 'Three',
-                slug: 'three',
-                teaser: 'three',
-                published_at: '14.04.2016.'
-              },
-              {
-                title: 'Two and a half',
-                slug: 'two-and-a-half',
-                teaser: 'two and a half',
-                published_at: '02.04.2016.'
-              }
-            ],
-            'December, 2015': [
-              {
-                title: 'Two',
-                slug: 'two',
-                teaser: 'two',
-                published_at: '25.12.2015.'
-              },
-              {
-                title: 'One',
-                slug: 'one',
-                teaser: 'one',
-                published_at: '01.12.2015.'
-              }
-            ]
-          }
-        }
-      });
-    }
+    <script src="https://use.fontawesome.com/b508397298.js"></script>
 
 
-      </script>
 </head>
-<body style="padding:5%">
+<body style="padding:5%; background-color:#f9f8f8">
   <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -131,24 +36,40 @@
        </form>
         </div>
       </nav>
-<div class="content container">
+<div class="content container" style="margin-top:4%">
 
-  <div class="row" style="margin-top:20px">
+  <div class="row" style="padding: 4%; background-color:white;">
+
       <div class="col-md-2">
-          <div>
-          <img src="{{person.profile_image.url}}" alt="..." class="rounded-circle img-thumbnail img-fluid" style="width:160px; height:160px">
-          </div>
+          <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-thumbnail img-fluid" style="width:140px; height:140px">
       </div>
+
       <div class="col-md-10">
-          <div >
             <h1>{{person.person_name}} </h1>
-            <h4><span class="badge badge-pill badge-success">{{person.position}}</span> </h4>
-          </div>
+            <h5><span class="badge badge-pill badge-success">{{person.position}}</span></h5>
+            <a href="#"><i class="fa fa-facebook-official" aria-hidden="true" ></i></a>
+            <a href="#"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="col-md-12">
+            <hr style="margin: 20px; border: 0; border-top: 1px solid #eee;"> <!-- 선 -->
+      </div>
+
+      <div class="col-md-12">
+            <h5 style="color:#5f5f5f">{{ person.person_desc}}</h5>
       </div>
   </div>
 
-    <div class="row">
-        <div class="col-md-16">
+    <div class="row" style="padding: 4%; background-color:white; margin-top: 40px">
+
+        <div class="col-md-12">
+            <div>
+              <i class="fa fa-grav" aria-hidden="true"> 소개</i>
+              <hr style="margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;"> <!-- 선 -->
+            </div>
+        </div>
+
+        <div class="col-md-12">
             <div style="margin-top:20px">
               {% for sk in person.skill_set.all%}
               <h4>{{ sk.devstack }}
@@ -158,34 +79,7 @@
                </h4>
               {% endfor %}
             </div>
-
-            {% verbatim %}
-            <div id='app'>
-            <blog-articles :dates-articles='datesArticles'></blog-articles>
-            </div>
-
-            <template id='my-template'>
-              <div class='container'>
-                <input v-model='searchQuery' class='search-box' placeholder='Search for articles...'>
-                <div class='timeline' v-if='anyArticle()'>
-                  <div v-for='(dateWithArticles, date) in searchedArticles'>
-                    <p v-if='dateWithArticles.length > 0' class='date'>{{ date }}</p>
-                    <div v-for='article in dateWithArticles' class='article'>
-                      <span class='dot'></span>
-                      <p class='article-date'>{{ article.published_at }}</p>
-                      <h3><a :href="'#' + article.slug">{{ article.title }}</a></h3>
-                      <p>{{ article.teaser }}</p>
-                    </div>
-                  </div>
-                </div>
-                <p v-else>No articles found.</p>
-              </div>
-            </template>
-            {% endverbatim %}
         </div>
-
-
-
 
     </div>
 </div>
