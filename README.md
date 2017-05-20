@@ -28,17 +28,25 @@ python manage.py runserver
 #서버를 돌리고 localhost:8000/resume에서 확인해본다 
 ```
 
+
+## 2017.05.21 스크린샷 
+![junekim](README/junekim.png)
+## 2017.05.14 스크린샷
+![screenshot2](README/screenshot2.png)
+![screenshot3](README/screenshot3.png)
 ## 2017.05.07 스크린샷
 
 ![screenshot](README/screentshot.png)
 
-## 2017.05.14 스크린샷
-![screenshot2](README/screenshot2.png)
-![screenshot3](README/screenshot3.png)
 
-## 2017.5.18 기준 해야할 것들 
+## 2017.5.21 업데이트
 * 이미지 업로드 / 적용
-* resume 템플릿 
+* resume 템플릿 첫번째 만들기 
+* 타임라인 css로 구현 
+
+## 2017.05.21 기준 해야할 것들 
 * tag 만들기 
 * tag 별 검색 혹은 분류 
-* 타임라인! vue 로 구현해보기
+* 경험 입력란 
+* 소개, 한줄소개 입력란  
+* 데이타임피커 
