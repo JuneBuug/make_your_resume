@@ -17,7 +17,9 @@ def resume_write(request):
         name = request.POST['name']
         position = request.POST['position']
         profile = request.FILES['profile_image']
-        person = Person.objects.create(person_name=name,position=position,profile_image=profile)
+        oneline = request.POST['oneline']
+        intro = request.POST['introduction']
+        person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
         person.save()
         # image = request.POST['profile_image']
         # if 'file' in request.FILES:

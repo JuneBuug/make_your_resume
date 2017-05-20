@@ -23,10 +23,6 @@ body{
   background-color:#f9f8f8;
 }
 
-img {
-  width:140px;
-  height:140px
-}
 
 @charset "UTF-8";
 body {
@@ -131,4 +127,9 @@ p.sub{
   color: #aaa;
   padding-left: 0;
   list-style-type: none;
+}
+
+.center-cropped{
+  width:140px;
+  height:140px;
 }

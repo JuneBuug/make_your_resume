@@ -41,8 +41,8 @@
 
   <div class="row">
 
-      <div class="col-md-2">
-          <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-thumbnail img-fluid">
+      <div class="col-md-2" >
+          <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-thumbnail img-fluid center-cropped">
       </div>
 
       <div class="col-md-10">
@@ -72,6 +72,7 @@
         </div>
 
 
+        {% if experience %}
         <div class="col-md-12">
             <div>
               <i class="fa fa-database" aria-hidden="true"> 경력</i>
@@ -91,14 +92,13 @@
                 </div>
                   {% endfor%}
               </div>
-
-
+            </div>
         </div>
-
+        {% endif %}
         <div class="col-md-12">
             <div>
               <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i>
-
+              <hr>
             </div>
         </div>
 
