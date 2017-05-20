@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <html>
 <head>
     <title>{{person.person_name}}</title>
@@ -7,14 +6,15 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static "resume_prac/detail.sass" %}">
+    <link rel="stylesheet" href="{% static "resume_prac/detail.css" %}">
+
 
     <script src="https://unpkg.com/vue"></script>
     <script src="https://use.fontawesome.com/b508397298.js"></script>
 
 
 </head>
-<body style="padding:5%; background-color:#f9f8f8">
+<body>
   <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,12 +36,13 @@
        </form>
         </div>
       </nav>
-<div class="content container" style="margin-top:4%">
 
-  <div class="row" style="padding: 4%; background-color:white;">
+<div class="content container">
+
+  <div class="row">
 
       <div class="col-md-2">
-          <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-thumbnail img-fluid" style="width:140px; height:140px">
+          <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-thumbnail img-fluid">
       </div>
 
       <div class="col-md-10">
@@ -52,22 +53,55 @@
       </div>
 
       <div class="col-md-12">
-            <hr style="margin: 20px; border: 0; border-top: 1px solid #eee;"> <!-- 선 -->
+            <hr>
       </div>
 
       <div class="col-md-12">
-            <h5 style="color:#5f5f5f">{{ person.person_desc}}</h5>
+            <h5 class="oneline">{{ person.person_oneline }}</h5>
       </div>
   </div>
 
-    <div class="row" style="padding: 4%; background-color:white; margin-top: 40px">
+    <div class="row" style="margin-top: 40px">
 
         <div class="col-md-12">
             <div>
               <i class="fa fa-grav" aria-hidden="true"> 소개</i>
-              <hr style="margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;"> <!-- 선 -->
+              <hr> <!-- 선 -->
+              <p >{{ person.person_desc }}</p>
             </div>
         </div>
+
+
+        <div class="col-md-12">
+            <div>
+              <i class="fa fa-database" aria-hidden="true"> 경력</i>
+              <hr> <!-- 선 -->
+
+              <div class="timeline">
+                {% for ex in experience %}
+                <div class="entry">
+                  <div class="title">
+                    <h3> {{ex.startDate.year}}.{{ex.startDate.month}} - {{ex.endDate.year}}.{{ex.endDate.month}}</h3>
+                    <p> {{ex.ex_name}}</p>
+                  </div>
+                  <div class="body">
+                    <p>{{ ex.ex_desc }}</p>
+                    <p class="sub">타임라인입니다.</p>
+                  </div>
+                </div>
+                  {% endfor%}
+              </div>
+
+
+        </div>
+
+        <div class="col-md-12">
+            <div>
+              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i>
+
+            </div>
+        </div>
+
 
         <div class="col-md-12">
             <div style="margin-top:20px">

@@ -9,6 +9,7 @@ class Person(models.Model) :
 	position = models.CharField(max_length=200)
 	profile_image = models.ImageField(upload_to='%Y/%m/%d/orig',default='default.png')
 	person_desc = models.TextField(blank=True, null=True)
+	person_oneline = models.CharField(max_length=80, blank=True, null=True)
 
 	def __str__(self):
 		return self.person_name

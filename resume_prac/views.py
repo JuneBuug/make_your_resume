@@ -45,7 +45,8 @@ def resume_write(request):
 
 def resume_detail(request,resume_id):
     person = Person.objects.get(id=resume_id)
-    return render(request,'resume_prac/resume_detail.html',{'person':person})
+    experience = person.experience_set.order_by('-startDate')
+    return render(request,'resume_prac/resume_detail.html',{'person':person,'experience':experience})
 
 def resume_search(request):
     if request.method =="GET":
