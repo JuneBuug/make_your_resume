@@ -24,8 +24,8 @@ class Skill(models.Model) :
 
 DEFAULT_PERSON_ID = 1
 class Experience(models.Model) :
-	startDate = models.DateTimeField(blank=True)
-	endDate = models.DateTimeField(blank=True)
+	startDate = models.DateField(blank=True)
+	endDate = models.DateField(blank=True)
 	ex_name = models.CharField(max_length=120)
 	ex_desc = models.TextField(blank=True, null=True) # 경험/경력에 대한 설명
 	person = models.ForeignKey('Person', on_delete=models.CASCADE, default=DEFAULT_PERSON_ID)

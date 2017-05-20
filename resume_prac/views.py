@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Person
-from .models import Skill
+from .models import Person,Skill,Experience
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
+import datetime
 import os
 
 # Create your views here.
@@ -21,25 +22,27 @@ def resume_write(request):
         intro = request.POST['introduction']
         person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
         person.save()
-        # image = request.POST['profile_image']
-        # if 'file' in request.FILES:
-        #     file = request.FILES['file']
-        #     filename = file._name
-        #
-        #     fp = open('%s/%s' % (UPLOAD_DIR, filename) , 'wb')
-        #     for chunk in file.chunks():
-        #         fp.write(chunk)
-        #         setattr(person,profile_image,chunk)
-        #         person.save()
-        #     fp.close()
 
+        #경력
+        ex_startdate = dict(request.POST)['startDate']
+        ex_enddate = dict(request.POST)['endDate']
+        ex_title = dict(request.POST)['title']
+        ex_desc = dict(request.POST)['desc']
+        num = 0
+
+        for e in ex_title :
+            experience = Experience.objects.create(startDate=ex_startdate[num],endDate= ex_enddate[num],ex_name=e,ex_desc=ex_desc[num],person=person)
+            experience.save()
+            num+= 1
+
+        #기술 스택
         sk = dict(request.POST)['skill']
         degree = dict(request.POST)['skill_degree']
-        number =0
+        number = 0
         for s in sk  :
             skill = Skill.objects.create(devstack=s,person= person,degree=degree[number])
             skill.save()
-            number+=1
+            number+= 1
 
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
