@@ -53,28 +53,6 @@
 
 </script>
 
-<!-- <script>
-  window.onload = function(){
-    var app2  = new Vue({
-    el: "#bpp",
-    data: {
-      rows: [
-        { startDate: "2017-05-21",endDate: "2017-05-21",title: "경력",desc: "경력입니다" },
-      ]
-    },
-    methods:{
-      addRow2: function(event){
-        if(event) event.preventDefault();
-        this.rows.push({startDate: "",endDate: "",title:"",desc:""});
-      },
-      remove2: function(row,index){
-        if(event) event.preventDefault();
-        this.rows.splice(index,1)
-      },
-    }
-    });
-}
-</script> -->
 
 </head>
 
@@ -107,7 +85,7 @@
     </header>
     <div class="row">
         <div class="col-md-12">
-            <form method="POST" enctype="multipart/form-data" class="form_layout"  >
+            <form method="POST" enctype="multipart/form-data" class="form_layout" >
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름</label>
@@ -130,6 +108,13 @@
                     <textarea name="introduction" class="form-control" id="introduction" placeholder="소개를 적어주세요." rows="5"></textarea>
                 </div>
 
+                <!-- <div class="form-group">
+                <p>관심사</p>
+                {% for t in tag %}
+                <label for="tags">{{ t.tag_name }} </label>
+                <input type="checkbox" name="tags" value ="{{ t.tag_name }}">
+                {% endfor %}
+                </div> -->
 
               <div id="bpp">
                 <table class="table">
@@ -172,6 +157,7 @@
                   </tbody>
                 </table>
               </div>
+
 
               <button type="submit" class="btn btn-success">제출</button>
             </form>

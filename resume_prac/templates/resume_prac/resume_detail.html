@@ -95,16 +95,17 @@
             </div>
         </div>
         {% endif %}
+
+
         <div class="col-md-12">
             <div>
-              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i>
+              <i class="fa fa-heart" aria-hidden="true"> 스킬</i>
               <hr>
             </div>
         </div>
 
-
         <div class="col-md-12">
-            <div style="margin-top:20px">
+            <div>
               {% for sk in person.skill_set.all%}
               <h4>{{ sk.devstack }}
                  <div class="progress" style="margin-top:10px">
@@ -112,6 +113,13 @@
                  </div>
                </h4>
               {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div>
+              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i>
+              <hr>
             </div>
         </div>
 

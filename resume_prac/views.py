@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Person,Skill,Experience
+from .models import Person,Skill,Experience,Tag
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
@@ -20,8 +20,12 @@ def resume_write(request):
         profile = request.FILES['profile_image']
         oneline = request.POST['oneline']
         intro = request.POST['introduction']
+        # tags = request.POST['tags']
         person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
         person.save()
+        #
+        # for t in tags:
+        #     person.tag_set.add(t)
 
         #경력
         ex_startdate = dict(request.POST)['startDate']
@@ -46,7 +50,8 @@ def resume_write(request):
 
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
-         return render(request,'resume_prac/resume_write.html')
+         tag = Tag.objects.all
+         return render(request,'resume_prac/resume_write.html',{'tag':tag})
 
 def resume_detail(request,resume_id):
     person = Person.objects.get(id=resume_id)

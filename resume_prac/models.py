@@ -10,6 +10,7 @@ class Person(models.Model) :
 	profile_image = models.ImageField(upload_to='%Y/%m/%d/orig',default='default.png')
 	person_desc = models.TextField(blank=True, null=True)
 	person_oneline = models.CharField(max_length=80, blank=True, null=True)
+	tag_set = models.ManyToManyField('Tag',blank=True)
 
 	def __str__(self):
 		return self.person_name
@@ -32,3 +33,9 @@ class Experience(models.Model) :
 
 	def __str__(self):
 		return self.ex_name
+
+class Tag(models.Model) :
+	tag_name = models.CharField(max_length=120)
+
+	def __str__(self):
+		return self.tag_name
