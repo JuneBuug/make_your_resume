@@ -27,7 +27,8 @@ body{
 @charset "UTF-8";
 body {
   /*background: linear-gradient(55deg, #4E75B9 30%, #5CBF98 90%);*/
-  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  /*background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);*/
+  background: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -17,12 +17,17 @@ def resume_write(request):
     if request.method == 'POST':
         name = request.POST['name']
         position = request.POST['position']
-        profile = request.FILES['profile_image']
+
         oneline = request.POST['oneline']
         intro = request.POST['introduction']
-        # tags = request.POST['tags']
-        person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
-        person.save()
+        # tags = request.POST.getlist('tags')
+        if 'profile_image' in request.FILES :
+            profile = request.FILES['profile_image']
+            person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
+            person.save()
+        else :
+            person = Person.objects.create(person_name=name,position=position,person_desc=intro,person_oneline=oneline)
+            person.save()
         #
         # for t in tags:
         #     person.tag_set.add(t)
