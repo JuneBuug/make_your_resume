@@ -3,6 +3,7 @@ from .models import Person,Skill,Experience,Tag
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+from django.db.models import Q
 import datetime
 import os
 
@@ -66,5 +67,5 @@ def resume_detail(request,resume_id):
 def resume_search(request):
     if request.method =="GET":
         query = request.GET.get('q')
-        person = Person.objects.filter(person_name__icontains=query)
+        person = Person.objects.filter(Q(person_name__icontains=query) | Q(position__icontains=query))
         return render(request,'resume_prac/resume_list.html',{'resume_list':person})
