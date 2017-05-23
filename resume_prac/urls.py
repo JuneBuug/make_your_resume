@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^write$', views.resume_write, name='write'),
     url(r'^(?P<resume_id>\d+)$',views.resume_detail,name="detail"),
     url(r'^search/$',views.resume_search,name="search"),
+    url(r'^(?P<resume_id>\d+)/add$',views.detail_add,name="detail_add"),
 ]

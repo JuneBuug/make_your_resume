@@ -56,8 +56,22 @@ def resume_write(request):
 
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
+         return render(request,'resume_prac/resume_write.html')
+
+def detail_add(request,resume_id):
+
+    if request.method == 'POST':
+        person = Person.objects.get(id=resume_id)
+        tag_name = dict(request.POST)['tag_name']
+
+        for t in tag_name:
+            tag = Tag.objects.create(tag_name=t)
+            person.tag_set.add(tag)
+
+        return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
+    else :
          tag = Tag.objects.all
-         return render(request,'resume_prac/resume_write.html',{'tag':tag})
+         return render(request,'resume_prac/detail_add.html',{'tag':tag})
 
 def resume_detail(request,resume_id):
     person = Person.objects.get(id=resume_id)

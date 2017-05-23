@@ -118,8 +118,13 @@
 
         <div class="col-md-12">
             <div>
-              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i>
+              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i> <a href="/resume/{{person.id}}/add"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
               <hr>
+            </div>
+            <div>
+              {% for t in person.tag_set.all%}
+            <span class="badge badge-pill badge-info">{{ t.tag_name }} </span>
+              {% endfor %}
             </div>
         </div>
 

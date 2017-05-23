@@ -36,6 +36,6 @@ class Experience(models.Model) :
 
 class Tag(models.Model) :
 	tag_name = models.CharField(max_length=120)
-
+	
 	def __str__(self):
 		return self.tag_name
