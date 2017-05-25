@@ -1,14 +1,13 @@
+{% extends "resume_prac/header.html" %}
 {% load staticfiles %}
 
 <html>
 <head>
     <title>관심사 추가</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/vue"></script>
 
+
+
+  {% block extra_head %}
   <script>
 
   window.onload = function(){
@@ -30,72 +29,46 @@
       },
     }
   });
-
-
-  }
-
+}
 </script>
-
+{% endblock %}
 
 </head>
-
+{% block content %}
 <body style="padding:10%">
-  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/resume">MYR</a>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/resume">전체보기 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/resume/write">추가하기</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0" action="{% url 'resume:search' %}" method="get" accept-charset="utf-8">
-         <input class="form-control mr-sm-2 searchfield" id="searchbox" name="q" type="text" placeholder="이름으로 검색하세요">
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-       </form>
-        </div>
-      </nav>
+  <div class="content container">
+      <header class="page-header">
+          <h1>관심사 추가하기</h1>
+      </header>
 
-<div class="content container">
-    <header class="page-header">
-        <h1>관심사 추가하기</h1>
-    </header>
-    <div class="row">
-        <div class="col-md-12">
-            <form method="POST" enctype="multipart/form-data" class="form_layout" >
-                {% csrf_token %}
+      <div class="row">
+          <div class="col-md-12">
+              <form method="POST" enctype="multipart/form-data" class="form_layout" >
+                  {% csrf_token %}
 
-              <div id="app">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <td><strong>관심사</strong></td>
-                      <td><button class="btn btn-primary" @click="addRow" v-on:submit.prevent>추가하기</button></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
-                      <td><input v-model="row.tag_name" type="text" name="tag_name" class="form-control" id="tag_name" placeholder="관심사를 입력해주세요."></td>
-                      <td><button class="btn btn-primary" @click="remove(row,index)" >Remove</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-
-              <button type="submit" class="btn btn-success">제출</button>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-
+                <div id="app">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td><strong>관심사</strong></td>
+                        <td><button class="btn btn-primary" @click="addRow" v-on:submit.prevent>추가하기</button></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
+                        <td><input v-model="row.tag_name" type="text" name="tag_name" class="form-control" id="tag_name" placeholder="관심사를 입력"></td>
+                        <td><button class="btn btn-primary" @click="remove(row,index)" >Remove</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+            <button type="submit" class="btn btn-success">제출</button>
+          </form>
+          </div>
+      </div>
+  </div>
 </body>
+{% endblock%}
 </html>
