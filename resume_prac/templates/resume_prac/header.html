@@ -28,7 +28,13 @@
             <a class="nav-link" href="/resume">전체보기 <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/resume/write">추가하기</a>
+            <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/resume/write">이력서 작성하기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'resume:example' 1 %}">템플릿 1 보기<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'resume:example' 2 %}">템플릿 2 보기 <span class="sr-only"></span></a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{% url 'resume:search' %}" method="get" accept-charset="utf-8">

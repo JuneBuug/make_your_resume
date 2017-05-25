@@ -1,0 +1,61 @@
+{% extends "resume_prac/header.html" %}
+
+{% load staticfiles %}
+
+<html>
+<head>
+  {% block title %} <title>{{ person.person_name }} </title> {% endblock %}
+  {% block extra_head%}
+  <!-- <link rel="stylesheet" href="{% static "resume_prac/detail0.css" %}"> -->
+  {% endblock%}
+</head>
+<body>
+
+{% block content %}
+<div class="content container-fluid" style="margin-left:0px; margin-right:0px; margin-top:4%;">
+  <div class="row" style="background-color: black;">
+     <div class="col-md-5" style="padding:0px">
+      <h1 style="color:white; padding:20%"> {{ person.person_name }}</h1>
+      <p style="color:#b90606;padding-left:20%"> {{ person.position }}</p>
+    </div>
+    <div class="col-md-7" style="padding:0px">
+      <img src="/uploads/background.jpg" alt="배경" style="width: 100%"/>
+    </div>
+  </div>
+
+  <div class="row" style="background-color: black;">
+    <div class="col-md-5" style="padding:0px">
+      <p style="color:white;display: flex;align-items: center;justify-content: center; height: 80%;"> About</p>
+    </div>
+    <div class="col-md-7" style="padding:0px">
+      <p style="color:white;display: flex;align-items: center;justify-content: center; height: 80%; padding-right:10%"> {{person.person_desc}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="background-color: black;">
+    <div class="col-md-5" style="padding:0px">
+      <p style="color:white;display: flex;align-items: center;justify-content: center; "> Experience</p>
+    </div>
+
+    <div class="col-md-7" style="padding:0px">
+      {% for ex in experience %}
+      <div style="display:flex; flex-direction:row; margin-bottom:10px" >
+        <div style="display:flex; align-items: left; flex-direction:column; width:30%">
+            <p style="color:white;">  {{ex.startDate.year}}.{{ex.startDate.month}} - {{ex.endDate.year}}.{{ex.endDate.month}}</p>
+            <p style="color:#b90606;"> {{ex.ex_name}}</p>
+        </div>
+
+        <div style="display:flex; align-items: right; width:70%;">
+          <p style="color:white;display: flex;align-items: center;justify-content: center; padding-right:8%"> {{ ex.ex_desc }}</p>
+        </div>
+    </div>
+      {% endfor%}
+    </div>
+
+
+  </div>
+
+{% endblock %}
+</body>
+
+</html>
