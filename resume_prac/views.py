@@ -85,7 +85,7 @@ def resume_templates(request,example_id):
         # == 1 로 했을땐 안됐는데 "1"로 하니까 됐음
         return render(request,'resume_prac/resume_detail.html',{'person':person,'experience':experience})
     else :
-        return render(request,'resume_prac/resume_detail_2.html',{'person':person,'experience':experience})
+        return render(request,'resume_prac/resume_detail_3.html',{'person':person,'experience':experience})
 
 def resume_search(request):
     if request.method =="GET":

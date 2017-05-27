@@ -1,0 +1,59 @@
+{% extends "resume_prac/header.html" %}
+
+{% load staticfiles %}
+
+<html>
+<head>
+  {% block title %} <title>{{ person.person_name }} </title> {% endblock %}
+  {% block extra_head%}
+  <link rel="stylesheet" href="{% static "resume_prac/detail3.css" %}">
+  {% endblock%}
+</head>
+<body>
+
+{% block content %}
+
+  <div class="container">
+
+    <div class="left_div" >
+        <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-fluid center-cropped" >
+        <p class="position">{{ person.position }}</p>
+        <hr>
+        <p class="title_1">한마디</p>
+        <p class="content_left">{{ person.person_oneline}}</p>
+        <hr>
+        <p class="title_2">ABOUT</p>
+        <p class="content_left">{{ person.person_desc }}</p>
+        <hr>
+    </div>
+
+    <div class="right_div">
+
+      <p>TIMELINE</p>
+
+      <div class="card-div">
+      {% for ex in experience %}
+      <div class="card" >
+        <div class="card-block">
+          <h4 class="card-title">{{ ex.ex_name }}</h4>
+          {% if ex.endDate == ex.publishDate %}
+           <p class="card-date"> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ex.startDate.year}}.{{ex.startDate.month}} - Current </p>
+          {% else %}
+           <p class="card-date"> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ex.startDate.year}}.{{ex.startDate.month}} - {{ex.endDate.year}}.{{ex.endDate.month}}</p>
+          {% endif %}
+          <p class="card-text">{{ ex.ex_desc }}</p>
+        </div>
+      </div>
+      {% endfor%}
+    </div>
+
+      <p>SKILL</p>
+
+    </div>
+  </div>
+
+
+{% endblock %}
+</body>
+
+</html>
