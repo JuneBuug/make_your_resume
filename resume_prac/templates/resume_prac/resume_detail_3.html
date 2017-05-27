@@ -29,7 +29,7 @@
 
     <div class="right_div">
 
-      <p>TIMELINE</p>
+      <p class="title_3"> · TIMELINE · </p>
 
       <div class="card-div">
       {% for ex in experience %}
@@ -47,8 +47,24 @@
       {% endfor%}
     </div>
 
-      <p>SKILL</p>
+      <p class="title_3"> · SKILL · </p>
+        <div class="card-div">
+        {% for sk in person.skill_set.all %}
+          <div class="card" >
+            <div class="card-block">
+              <h4 class="card-title">{{ sk.devstack }}</h4>
+              <p class="card-date"> <i class="fa fa-signal" aria-hidden="true"></i>  {{ sk.degree }}% </p>
+            </div>
+          </div>
+        {% endfor%}
+        </div>
 
+      <p class="title_3"> · INTEREST · </p>
+      <div class="card-div">
+        {% for t in person.tag_set.all%}
+          <span class="badge badge-pill badge-info"> {{ t.tag_name }} </span>
+        {% endfor %}
+      </div>
     </div>
   </div>
 
