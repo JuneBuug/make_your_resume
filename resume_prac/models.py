@@ -27,6 +27,7 @@ DEFAULT_PERSON_ID = 1
 class Experience(models.Model) :
 	startDate = models.DateField(blank=True)
 	endDate = models.DateField(blank=True)
+	publishDate = models.DateField(auto_now=True)
 	ex_name = models.CharField(max_length=120)
 	ex_desc = models.TextField(blank=True, null=True) # 경험/경력에 대한 설명
 	person = models.ForeignKey('Person', on_delete=models.CASCADE, default=DEFAULT_PERSON_ID)
@@ -36,6 +37,6 @@ class Experience(models.Model) :
 
 class Tag(models.Model) :
 	tag_name = models.CharField(max_length=120)
-	
+
 	def __str__(self):
 		return self.tag_name
