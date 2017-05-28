@@ -17,7 +17,11 @@
       <div class="starter-template">
         {% for resume in resume_list %}
             <a href="/resume/{{resume.id}}">
-                <h5 style="margin-top:20px"> <span class="badge badge-primary">{{resume.position}}</span> {{ resume.person_name }}의 Resume</h5>
+                <h5 style="margin-top:20px"> <span class="badge badge-primary">{{resume.position}}</span> {{ resume.person_name }}의 Resume
+                  {% for t in resume.tag_set.all%}
+                   <span class="tags" style="color:  #ea094f; font-size: 12px;"> #{{t.tag_name}}</span>
+                   {% endfor %}
+                 </h5>
             </a>
         {% endfor %}
       </div>

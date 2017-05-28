@@ -11,6 +11,8 @@ class Person(models.Model) :
 	person_desc = models.TextField(blank=True, null=True)
 	person_oneline = models.CharField(max_length=80, blank=True, null=True)
 	tag_set = models.ManyToManyField('Tag',blank=True)
+	fb_url = models.TextField(blank=True,null=True,default='#') # 페이스북 url
+	gb_url = models.TextField(blank=True,null=True,default='#') # github url
 
 	def __str__(self):
 		return self.person_name

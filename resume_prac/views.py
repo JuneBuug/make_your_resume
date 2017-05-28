@@ -21,13 +21,17 @@ def resume_write(request):
 
         oneline = request.POST['oneline']
         intro = request.POST['introduction']
+
+        fb = request.POST['fb']
+        gb = request.POST['gb']
+
         # tags = request.POST.getlist('tags')
         if 'profile_image' in request.FILES :
             profile = request.FILES['profile_image']
-            person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline)
+            person = Person.objects.create(person_name=name,position=position,profile_image=profile,person_desc=intro,person_oneline=oneline,fb_url=fb,gb_url=gb)
             person.save()
         else :
-            person = Person.objects.create(person_name=name,position=position,person_desc=intro,person_oneline=oneline)
+            person = Person.objects.create(person_name=name,position=position,person_desc=intro,person_oneline=oneline,fb_url=fb,gb_url=gb)
             person.save()
         #
         # for t in tags:
@@ -85,7 +89,7 @@ def resume_templates(request,example_id):
         # == 1 로 했을땐 안됐는데 "1"로 하니까 됐음
         return render(request,'resume_prac/resume_detail.html',{'person':person,'experience':experience})
     else :
-        return render(request,'resume_prac/resume_detail_3.html',{'person':person,'experience':experience})
+        return render(request,'resume_prac/resume_detail_2.html',{'person':person,'experience':experience})
 
 def resume_search(request):
     if request.method =="GET":

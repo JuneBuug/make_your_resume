@@ -6,54 +6,72 @@
 <head>
   {% block title %} <title>{{ person.person_name }} </title> {% endblock %}
   {% block extra_head%}
-  <!-- <link rel="stylesheet" href="{% static "resume_prac/detail0.css" %}"> -->
+  <link rel="stylesheet" href="{% static "resume_prac/detail3.css" %}">
   {% endblock%}
 </head>
 <body>
 
 {% block content %}
-<div class="content container-fluid" style="margin-left:0px; margin-right:0px; margin-top:4%;">
-  <div class="row" style="background-color: black;">
-     <div class="col-md-5" style="padding:0px">
-      <h1 style="color:white; padding:20%"> {{ person.person_name }}</h1>
-      <p style="color:#b90606;padding-left:20%"> {{ person.position }}</p>
-    </div>
-    <div class="col-md-7" style="padding:0px">
-      <img src="/uploads/background.jpg" alt="배경" style="width: 100%"/>
-    </div>
-  </div>
 
-  <div class="row" style="background-color: black;">
-    <div class="col-md-5" style="padding:0px">
-      <p style="color:white;display: flex;align-items: center;justify-content: center; height: 80%;"> About</p>
-    </div>
-    <div class="col-md-7" style="padding:0px">
-      <p style="color:white;display: flex;align-items: center;justify-content: center; height: 80%; padding-right:10%"> {{person.person_desc}}</p>
-    </div>
-  </div>
+  <div class="container">
 
-  <div class="row" style="background-color: black;">
-    <div class="col-md-5" style="padding:0px">
-      <p style="color:white;display: flex;align-items: center;justify-content: center; "> Experience</p>
+    <div class="left_div" >
+        <img src="{{person.profile_image.url}}" alt="프로필사진" class="rounded-circle img-fluid center-cropped" >
+        <p class="position">{{ person.position }}</p>
+        <div class="pages">
+          <a href="{{ person.fb_url }}"  target="_blank"><i class="fa fa-facebook-official" aria-hidden="true" ></i></a>
+          <a href="{{ person.gb_url }}"  target="_blank"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+        </div>
+        <hr>
+        <p class="title_1">한마디</p>
+        <p class="content_left">{{ person.person_oneline}}</p>
+        <hr>
+        <p class="title_2">ABOUT</p>
+        <p class="content_left">{{ person.person_desc }}</p>
+        <hr>
     </div>
 
-    <div class="col-md-7" style="padding:0px">
+    <div class="right_div">
+
+      <p class="title_3"> · TIMELINE · </p>
+
+      <div class="card-div">
       {% for ex in experience %}
-      <div style="display:flex; flex-direction:row; margin-bottom:10px" >
-        <div style="display:flex; align-items: left; flex-direction:column; width:30%">
-            <p style="color:white;">  {{ex.startDate.year}}.{{ex.startDate.month}} - {{ex.endDate.year}}.{{ex.endDate.month}}</p>
-            <p style="color:#b90606;"> {{ex.ex_name}}</p>
+      <div class="card" >
+        <div class="card-block">
+          <h4 class="card-title">{{ ex.ex_name }}</h4>
+          {% if ex.endDate == ex.publishDate %}
+           <p class="card-date"> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ex.startDate.year}}.{{ex.startDate.month}} - Current </p>
+          {% else %}
+           <p class="card-date"> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ex.startDate.year}}.{{ex.startDate.month}} - {{ex.endDate.year}}.{{ex.endDate.month}}</p>
+          {% endif %}
+          <p class="card-text">{{ ex.ex_desc }}</p>
         </div>
-
-        <div style="display:flex; align-items: right; width:70%;">
-          <p style="color:white;display: flex;align-items: center;justify-content: center; padding-right:8%"> {{ ex.ex_desc }}</p>
-        </div>
-    </div>
+      </div>
       {% endfor%}
     </div>
 
+      <p class="title_3"> · SKILL · </p>
+        <div class="card-div">
+        {% for sk in person.skill_set.all %}
+          <div class="card" >
+            <div class="card-block">
+              <h4 class="card-title">{{ sk.devstack }}</h4>
+              <p class="card-date"> <i class="fa fa-signal" aria-hidden="true"></i>  {{ sk.degree }}% </p>
+            </div>
+          </div>
+        {% endfor%}
+        </div>
 
+      <p class="title_3"> · INTEREST · </p>
+      <div class="card-div">
+        {% for t in person.tag_set.all%}
+          <span class="badge badge-pill badge-info"> {{ t.tag_name }} </span>
+        {% endfor %}
+      </div>
+    </div>
   </div>
+
 
 {% endblock %}
 </body>

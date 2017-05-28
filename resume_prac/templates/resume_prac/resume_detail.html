@@ -21,11 +21,12 @@
       <div class="col-md-10">
             <h1>{{person.person_name}} </h1>
             <h5><span class="badge badge-pill badge-success">{{person.position}}</span></h5>
-            <a href="#"><i class="fa fa-facebook-official" aria-hidden="true" ></i></a>
-            <a href="#"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+            <a href="{{ person.fb_url }}"  target="_blank"><i class="fa fa-facebook-official" aria-hidden="true" ></i></a>
+            <a href="{{ person.gb_url }}"  target="_blank"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
       </div>
 
       <div class="col-md-12">
+            <img src ="{% static "resume_prac/ic_edit.png"%}" style="width:48px; height:48px;"/>
             <hr>
       </div>
 
@@ -91,7 +92,7 @@
 
         <div class="col-md-12">
             <div>
-              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i> <a href="/resume/{{person.id}}/add"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+              <i class="fa fa-hashtag" aria-hidden="true"> 관심사</i> <i class="fa fa-pencil" aria-hidden="true"></i><a href="/resume/{{person.id}}/add"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
               <hr>
             </div>
             <div>
