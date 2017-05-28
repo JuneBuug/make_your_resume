@@ -33,10 +33,16 @@ def resume_write(request):
         else :
             person = Person.objects.create(person_name=name,position=position,person_desc=intro,person_oneline=oneline,fb_url=fb,gb_url=gb)
             person.save()
-        #
-        # for t in tags:
-        #     person.tag_set.add(t)
 
+        return HttpResponseRedirect(reverse('resume:write2', args=(person.id,)))
+        # return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
+    else :
+         return render(request,'resume_prac/resume_write.html')
+
+def resume_write_2(request,resume_id):
+
+    if request.method == 'POST' :
+        person = Person.objects.get(id=resume_id)
         #경력
         ex_startdate = dict(request.POST)['startDate']
         ex_enddate = dict(request.POST)['endDate']
@@ -49,6 +55,14 @@ def resume_write(request):
             experience.save()
             num+= 1
 
+        return HttpResponseRedirect(reverse('resume:write3', args=(person.id,)))
+    else :
+        return render(request,'resume_prac/resume_write_2.html')
+
+def resume_write_3(request,resume_id):
+
+    if request.method == 'POST' :
+        person = Person.objects.get(id=resume_id)
         #기술 스택
         sk = dict(request.POST)['skill']
         degree = dict(request.POST)['skill_degree']
@@ -60,7 +74,7 @@ def resume_write(request):
 
         return HttpResponseRedirect(reverse('resume:detail', args=(person.id,)))
     else :
-         return render(request,'resume_prac/resume_write.html')
+        return render(request,'resume_prac/resume_write_3.html')
 
 def detail_add(request,resume_id):
 
@@ -81,6 +95,11 @@ def resume_detail(request,resume_id):
     person = Person.objects.get(id=resume_id)
     experience = person.experience_set.order_by('-startDate')
     return render(request,'resume_prac/resume_detail.html',{'person':person,'experience':experience})
+
+# def resume_detail2(request,resume_id):
+#     person = Person.objects.get(id=resume_id)
+#     experience = person.experience_set.order_by('-startDate')
+#     return render(request,'resume_prac/resume_detail2.html',{'person':person,'experience':experience})
 
 def resume_templates(request,example_id):
     person = Person.objects.first()

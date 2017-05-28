@@ -32,6 +32,7 @@ class Experience(models.Model) :
 	publishDate = models.DateField(auto_now=True)
 	ex_name = models.CharField(max_length=120)
 	ex_desc = models.TextField(blank=True, null=True) # 경험/경력에 대한 설명
+	ex_sub = models.TextField(blank=True, null=True)
 	person = models.ForeignKey('Person', on_delete=models.CASCADE, default=DEFAULT_PERSON_ID)
 
 	def __str__(self):

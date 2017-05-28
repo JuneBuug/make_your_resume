@@ -1,0 +1,84 @@
+{% extends "resume_prac/header.html" %}
+{% load staticfiles %}
+
+<html>
+<head>
+  {% block title %} <title>경력 쓰기 </title> {% endblock %}
+
+  {% block extra_head%}
+  <script>
+
+  window.onload = function(){
+
+  new Vue({
+   el: "#bpp",
+   data: {
+     rows: [
+       { startDate: "",endDate: "",title: "",desc: "" },
+     ]
+   },
+   methods:{
+     addRow2: function(event){
+       if(event) event.preventDefault();
+       this.rows.push({startDate: "",endDate: "",title:"",desc:""});
+     },
+     remove2: function(row,index){
+       if(event) event.preventDefault();
+       this.rows.splice(index,1)
+     },
+   }
+   });
+  }
+
+</script>
+{% endblock%}
+
+</head>
+
+{% block content %}
+<body style="padding:10%">
+<div class="content container">
+    <header class="page-header">
+        <h1>경력 작성</h1>
+    </header>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" enctype="multipart/form-data" class="form_layout" >
+                {% csrf_token %}
+
+
+              <div id="bpp">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <td><strong>시작 날짜</strong></td>
+                      <td><strong>종료 날짜</strong></td>
+                      <td><strong>경력/경험 이름</strong></td>
+                      <td><strong>설명</strong></td>
+                      <td><button class="btn btn-primary" @click="addRow2" v-on:submit.prevent>추가하기</button></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
+                      <td><input v-model="row.startDate" type="date" name="startDate" class="form-control" id="startDate" placeholder="시작일을 입력하세요."></td>
+                      <td><input v-model="row.endDate" type="date" name="endDate" class="form-control" id="endDate" placeholder="종료일을 입력하세요."/></td>
+                      <td><input v-model="row.title" type="text" name="title" class="form-control" id="title" placeholder="경력명을 입력하세요."/></td>
+                      <td><input v-model="row.desc" type="text" name="desc" class="form-control" id="desc" placeholder="경력을 설명해주세요."/></td>
+                      <td><button class="btn btn-primary" @click="remove2(row,index)" v-on:submit.prevent >Remove</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <button type="submit" class="btn btn-success">다음(기술 스택 입력)</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

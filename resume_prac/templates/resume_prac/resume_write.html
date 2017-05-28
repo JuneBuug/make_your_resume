@@ -3,53 +3,11 @@
 
 <html>
 <head>
-  {% block title %} <title>Resume 쓰기 </title> {% endblock %}
+  {% block title %} <title>Resume</title> {% endblock %}
 
   {% block extra_head%}
-  <script>
-
-  window.onload = function(){
-     new Vue({
-    el: "#app",
-    data: {
-      rows: [
-        {skill: "Android",degree: 30},
-      ]
-    },
-    methods:{
-      addRow: function(event){
-        if(event) event.preventDefault()
-        this.rows.push({skill:"",degree: 0});
-      },
-      remove: function(row,index){
-        if(event) event.preventDefault()
-        this.rows.splice(index,1)
-      },
-    }
-  });
-
-  new Vue({
-   el: "#bpp",
-   data: {
-     rows: [
-       { startDate: "2017-05-21",endDate: "2017-05-21",title: "경력",desc: "경력입니다" },
-     ]
-   },
-   methods:{
-     addRow2: function(event){
-       if(event) event.preventDefault();
-       this.rows.push({startDate: "",endDate: "",title:"",desc:""});
-     },
-     remove2: function(row,index){
-       if(event) event.preventDefault();
-       this.rows.splice(index,1)
-     },
-   }
-   });
-  }
-
-</script>
-{% endblock%}
+  <link rel="stylesheet" href="{% static "resume_prac/write.css" %}">
+  {% endblock%}
 
 </head>
 
@@ -57,7 +15,7 @@
 <body style="padding:10%">
 <div class="content container">
     <header class="page-header">
-        <h1>Resume 쓰기</h1>
+        <h1>Personal Info</h1>
     </header>
     <div class="row">
         <div class="col-md-12">
@@ -65,11 +23,11 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="이름">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="이름" required>
                 </div>
                 <div class="form-group">
                     <label for="position">직군</label>
-                    <input type="text" name="position" class="form-control" id="position" placeholder="직군">
+                    <input type="text" name="position" class="form-control" id="position" placeholder="직군" required>
                 </div>
                 <div class="form-group">
                     <label for="fb">facebook 주소</label>
@@ -89,54 +47,9 @@
                 </div>
                 <div class="form-group">
                     <label for="introduction">소개</label>
-                    <textarea name="introduction" class="form-control" id="introduction" placeholder="소개를 적어주세요." rows="5"></textarea>
+                    <textarea name="introduction" class="form-control" id="introduction" placeholder="소개를 적어주세요." rows="5" required></textarea>
                 </div>
-
-
-              <div id="bpp">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <td><strong>시작 날짜</strong></td>
-                      <td><strong>종료 날짜</strong></td>
-                      <td><strong>경력/경험 이름</strong></td>
-                      <td><strong>설명</strong></td>
-                      <td><button class="btn btn-primary" @click="addRow2" v-on:submit.prevent>추가하기</button></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
-                      <td><input v-model="row.startDate" type="date" name="startDate" class="form-control" id="startDate" placeholder="시작일을 입력하세요."></td>
-                      <td><input v-model="row.endDate" type="date" name="endDate" class="form-control" id="endDate" placeholder="종료일을 입력하세요."/></td>
-                      <td><input v-model="row.title" type="text" name="title" class="form-control" id="title" placeholder="경력명을 입력하세요."/></td>
-                      <td><input v-model="row.desc" type="text" name="desc" class="form-control" id="desc" placeholder="경력을 설명해주세요."/></td>
-                      <td><button class="btn btn-primary" @click="remove2(row,index)" v-on:submit.prevent >Remove</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div id="app">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <td><strong>기술 스택</strong></td>
-                      <td><strong>기술 능숙도</strong></td>
-                      <td><button class="btn btn-primary" @click="addRow" v-on:submit.prevent>추가하기</button></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(row,index) in rows" v-bind:key="row.id" v-on:remove="rows.splice(index, 1)">
-                      <td><input v-model="row.skill" type="text" name="skill" class="form-control" id="skill" placeholder="추가하고 싶은 기술 스택을 적어주세요."></td>
-                      <td><input v-model="row.degree" input class="form-control" type="number" value="0" name ="skill_degree" id="skill_degree"/></td>
-                      <td><button class="btn btn-primary" @click="remove(row,index)" >Remove</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-
-              <button type="submit" class="btn btn-success">제출</button>
+              <button type="submit" class="btn btn-success">다음 (경력 입력)</button>
             </form>
 
         </div>

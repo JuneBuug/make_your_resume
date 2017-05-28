@@ -26,7 +26,6 @@
       </div>
 
       <div class="col-md-12">
-            <img src ="{% static "resume_prac/ic_edit.png"%}" style="width:48px; height:48px;"/>
             <hr>
       </div>
 
@@ -61,7 +60,11 @@
                   </div>
                   <div class="body">
                     <p>{{ ex.ex_desc }}</p>
+                    {% if ex.ex_sub %}
+                    <p class="sub">{{ ex.ex_sub}}</p>
+                    {% else %}
                     <p class="sub">타임라인입니다.</p>
+                    {% endif%}
                   </div>
                 </div>
                   {% endfor%}
