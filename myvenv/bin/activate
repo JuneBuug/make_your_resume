@@ -34,10 +34,10 @@ deactivate () {
     fi
 }
 
-# unset irrelavent variables
+# unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/JuneKim/Desktop/resume/myvenv"
+VIRTUAL_ENV="/Users/junekim/Desktop/make_your_resume/myvenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

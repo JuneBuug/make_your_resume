@@ -4,6 +4,7 @@
 * Django
 * Python3
 * Bootstrap4
+* 약간의 Vue.js
 
 
 
@@ -23,6 +24,12 @@ source (가상환경이름)/bin/activate
 
 pip install -r requirements.txt
 #requirement를 설치한다.
+
+python manage.py makemirgations
+# migration 파일을 만든다
+
+python manage.py migrate
+# migration을 적용한다.
 
 python manage.py runserver
 #서버를 돌리고 localhost:8000/resume에서 확인해본다

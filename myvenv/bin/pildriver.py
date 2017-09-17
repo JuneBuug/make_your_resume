@@ -1,4 +1,4 @@
-#!/Users/JuneKim/Desktop/resume/myvenv/bin/python3
+#!/Users/junekim/Desktop/make_your_resume/myvenv/bin/python3
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine

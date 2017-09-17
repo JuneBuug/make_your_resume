@@ -1,3 +1,9 @@
 db.sqlite3
-.env 
-manage.py
+.env
+myvenv
+.DS_Store
+resume_prac/__pycache__/
+resume_prac/migrations
+/__pycache__/
+resume/__pycache__/
+uploads/

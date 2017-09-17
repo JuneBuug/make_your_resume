@@ -1,4 +1,4 @@
-#!/Users/JuneKim/Desktop/resume/myvenv/bin/python3
+#!/Users/junekim/Desktop/make_your_resume/myvenv/bin/python3
 from __future__ import print_function
 import base64
 import os

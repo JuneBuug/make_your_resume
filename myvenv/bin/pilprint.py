@@ -1,4 +1,4 @@
-#!/Users/JuneKim/Desktop/resume/myvenv/bin/python3
+#!/Users/junekim/Desktop/make_your_resume/myvenv/bin/python3
 #
 # The Python Imaging Library.
 # $Id$
